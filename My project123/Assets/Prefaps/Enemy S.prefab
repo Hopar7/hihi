@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8999717806611417993}
   - component: {fileID: 705975080042880609}
-  - component: {fileID: 2149427224424956956}
+  - component: {fileID: 1318948683482235925}
   - component: {fileID: 5676620929755217863}
   - component: {fileID: 7320030635698820638}
   m_Layer: 0
@@ -87,8 +87,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2149427224424956956
-CircleCollider2D:
+--- !u!70 &1318948683482235925
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,12 +116,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
+  m_Size: {x: 0.36, y: 0.6}
+  m_Direction: 0
 --- !u!50 &5676620929755217863
 Rigidbody2D:
   serializedVersion: 4
@@ -167,17 +167,15 @@ MonoBehaviour:
   health: 3
   sprites:
   - {fileID: -565746319, guid: af9ee34a305079b479aab2859fa6e150, type: 3}
-  - {fileID: 4326287474489854147, guid: 9e1e2d0fd11db9b4782a0780116be58e, type: 3}
+  - {fileID: -565746319, guid: af9ee34a305079b479aab2859fa6e150, type: 3}
   MaxShotDelay: 3
   curShotDelay: 0
-  xp: {fileID: 0}
   bulletObjA: {fileID: 5247781614472598492, guid: 8ad1a421b7cd3424ca1af5895c3da79a, type: 3}
   bulletObjB: {fileID: 5247781614472598492, guid: 79e53634927ca72438ee317d66515164, type: 3}
   itemCoin: {fileID: 6902336467597851662, guid: f1ee05e6be603a8428d0786df65df09a, type: 3}
   itemPower: {fileID: 4530846440900244865, guid: 8f1b0ed3d5a54584a9f27b5d2e4007d9, type: 3}
   itemBoom: {fileID: 4477156264719260071, guid: 77e1f3c48ffb5594c955a768155daed4, type: 3}
   player: {fileID: 0}
-  player2: {fileID: 0}
   objectManager: {fileID: 0}
   gameManager: {fileID: 0}
   patternIndex: 0

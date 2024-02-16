@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer hpSprite;
 
     public bool isTouchTop;
-    public bool isTouchBottom;
+    public bool isTouchBottom;  
     public bool isTouchRight;
     public bool isTouchLeft;
 
@@ -18,31 +18,29 @@ public class Player : MonoBehaviour
     public int score;
 
     public float speed;
-    public float power;
+    public int power;
+    public int shoot;
+    public float exp;
+
     public int boom;
     public int Maxboom;
     public float maxPower;
     public float maxShotDelay;
     public float curShotDelay;
 
-
-
     public GameObject bulletObjA;
     public GameObject bulletObjB;
-    public GameObject boomEfeect;
     public GameManager gameManager;
-    public ObjectManager objectManager; 
+    public ObjectManager objectManager;
 
 
-    public bool isHit;
-    public bool isBoomTime;
-
-    public GameObject[] followers;
+    //public GameObject[] followers;
     public bool isRespawnTime;
 
     public bool[] JoyControl;
     public bool isControl;
     public bool isButtonA;
+    
 
     SpriteRenderer spriteRenderer;
     Animator anim;
@@ -76,19 +74,18 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
         skilTime += Time.deltaTime;
         Move();
-
+        Fire();
         Reload();
-
+        
 
 
 
     }
     public void JoyPanel(int type)
     {
-        for(int i=0;i<9;i++)
+        for (int i = 0; i < 9; i++)
         {
             JoyControl[i] = i == type;
         }
@@ -102,6 +99,9 @@ public class Player : MonoBehaviour
     {
         isControl = false;
     }
+
+
+
 
     void Move()
     {
@@ -136,19 +136,24 @@ public class Player : MonoBehaviour
             anim.SetInteger("Input", (int)h);
         }
     }
+   
     public void ButtonAUP()
     {
+        isButtonA = false;
 
+
+
+        /*
         if (skilTime >= 1.5f)
         {
-            GameObject bullet = objectManager.Makeobj("BulletPlayerS1");
+            GameObject bullet = objectManager.Makeobj("LazerPlayerS1");
             bullet.transform.position = transform.position;
 
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
             curShotDelay = 0;
         }
-
+        */
 
 
     }
@@ -156,60 +161,90 @@ public class Player : MonoBehaviour
 
     public void ButtonADown()
     {
-        skilTime = 0;
+        isButtonA = true;
 
 
     }
+   
+
+
 
     public void Fire()
     {
-        
-
-        if(curShotDelay <maxShotDelay)
+        if(isButtonA==false)
         {
             return;
         }
 
-        switch (power)
+
+        if (curShotDelay < maxShotDelay)
+        {
+            return;
+        }
+
+
+        switch (shoot)
         {
             case 1:
-                GameObject bullet = objectManager.Makeobj("BulletPlayerA");
+                GameObject bullet = objectManager.Makeobj("LazerPlayerA");
                 bullet.transform.position = transform.position;
 
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
             case 2:
-                GameObject bulletR = objectManager.Makeobj("BulletPlayerA");
-                 bulletR.transform.position=transform.position+Vector3.right*0.1f;
+                GameObject bulletR = objectManager.Makeobj("LazerPlayerA");
+                bulletR.transform.position = transform.position + Vector3.right * 0.05f;
 
-                GameObject bulletL = objectManager.Makeobj("BulletPlayerA");
-                bulletL.transform.position = transform.position + Vector3.left * 0.1f;
+                GameObject bulletL = objectManager.Makeobj("LazerPlayerA");
+                bulletL.transform.position = transform.position + Vector3.left * 0.05f;
 
                 Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
                 rigidR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                
                 break;
-            default:
-                GameObject bulletRR = objectManager.Makeobj("BulletPlayerA");
-                bulletRR.transform.position = transform.position + Vector3.right * 0.35f;
-                GameObject bulletLL = objectManager.Makeobj("BulletPlayerA");
-                bulletLL.transform.position = transform.position + Vector3.left * 0.35f;
+            case 3:
+                GameObject bulletRR = objectManager.Makeobj("LazerPlayerA");
+                bulletRR.transform.position = transform.position + Vector3.right * 0.15f;
+                GameObject bulletLL = objectManager.Makeobj("LazerPlayerA");
+                bulletLL.transform.position = transform.position + Vector3.left * 0.15f;
 
-                GameObject bulletCC = objectManager.Makeobj("BulletPlayerB");
-                bulletCC.transform.position = transform.position ;
+                GameObject bulletCC = objectManager.Makeobj("LazerPlayerA");
+                bulletCC.transform.position = transform.position;
                 Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidLL = bulletLL.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidCC = bulletCC.GetComponent<Rigidbody2D>();
                 rigidRR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidLL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidCC.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                
+                break;
+            default:
+                GameObject bulletRR1 = objectManager.Makeobj("LazerPlayerA");
+                bulletRR1.transform.position = transform.position + Vector3.right * 0.05f;
+                GameObject bulletRR2 = objectManager.Makeobj("LazerPlayerA");
+                bulletRR2.transform.position = transform.position + Vector3.right * 0.15f;
+
+                GameObject bulletLL1 = objectManager.Makeobj("LazerPlayerA");
+                bulletLL1.transform.position = transform.position + Vector3.left * 0.05f;
+                GameObject bulletLL2 = objectManager.Makeobj("LazerPlayerA");
+                bulletLL2.transform.position = transform.position + Vector3.left * 0.15f;
+
+                Rigidbody2D rigidRR1 = bulletRR1.GetComponent<Rigidbody2D>();
+                Rigidbody2D rigidRR2 = bulletRR2.GetComponent<Rigidbody2D>();
+                Rigidbody2D rigidLL1 = bulletLL1.GetComponent<Rigidbody2D>();
+                Rigidbody2D rigidLL2 = bulletLL2.GetComponent<Rigidbody2D>();
+                
+                rigidRR1.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                rigidRR2.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                rigidLL1.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                rigidLL2.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                
+
                 break;
         }
-
-
-
         curShotDelay = 0;
 
     }
@@ -218,7 +253,6 @@ public class Player : MonoBehaviour
     {
         curShotDelay += Time.deltaTime;
     }
-
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -238,20 +272,14 @@ public class Player : MonoBehaviour
                 case "Left":
                     isTouchLeft = true;
                     break;
-
             }
-
-
         }
         else if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "EnemyBullet")
         {
             life--;
             hpSprite.size -= new Vector2(0.1f, 0f);
 
-
-
             gameManager.CallExplosion(transform.position, "P");
-
 
             if (life == 0)
             {
@@ -259,11 +287,10 @@ public class Player : MonoBehaviour
 
                 gameObject.SetActive(false);
             }
-
         }
-        else if(collision.gameObject.tag == "Item")
+        else if (collision.gameObject.tag == "Item")
         {
-            Item item =collision.gameObject.GetComponent<Item>();
+            Item item = collision.gameObject.GetComponent<Item>();
             switch (item.type)
             {
                 case "Coin":
@@ -275,49 +302,27 @@ public class Player : MonoBehaviour
                     else
                     {
                         power++;
-                        AddFollower();
+                        
                     }
                     break;
-                    
+
                 case "Boom":
                     if (boom == Maxboom)
                         score += 500;
-                    
                     break;
 
             }
             collision.gameObject.SetActive(false);
-
         }
+
         else if (collision.gameObject.tag == "Exp")
         {
-            gameManager.xpSlider.value += 0.1f;
+            gameManager.xpSlider.value += exp;
 
             collision.gameObject.SetActive(false);
         }
 
-
-
     }
-    void AddFollower()
-    {
-        if (power == 4)
-            followers[0].SetActive(true);
-        else if (power == 5)
-            followers[1].SetActive(true);
-        else if (power == 6)
-            followers[2].SetActive(true);
-    }
-
-
-    void offBoomEffect()
-    {
-        boomEfeect.SetActive(false);
-        isBoomTime = false;
-
-    }
-
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Border")

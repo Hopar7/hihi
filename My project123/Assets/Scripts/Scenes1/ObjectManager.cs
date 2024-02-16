@@ -8,20 +8,16 @@ public class ObjectManager : MonoBehaviour
     public GameObject enemyLPrefab;
     public GameObject enemyMPrefab;
     public GameObject enemySPrefab;
-    public GameObject itemCoinPrefab;
-    public GameObject itemPowerPrefab;
-    public GameObject itemBoomPrefab;
-    public GameObject bulletPlayerAPrefab;
-    public GameObject bulletPlayerBPrefab;
+
+
     public GameObject LazerPlayerAPrefab;
-    public GameObject bulletPlayerS1Prefab;
     public GameObject LazerPlayerS1Prefab;
 
     public GameObject bulletEnemyAPrefab;
     public GameObject bulletEnemyBPrefab;
-    public GameObject bulletFollowerPrefab;
     public GameObject bulletBossAPrefab;
     public GameObject bulletBossBPrefab;
+
     public GameObject explosionPrefab;
 
     public GameObject expPrefab;
@@ -31,21 +27,13 @@ public class ObjectManager : MonoBehaviour
     GameObject[] enemyM;
     GameObject[] enemyS;
 
-    GameObject[] itemCoin;
-    GameObject[] itemPower;
-    GameObject[] itemBoom;
 
-    GameObject[] BulletPlayerA;
-    GameObject[] BulletPlayerB;
+
     GameObject[] LazerPlayerA;
-    GameObject[] BulletPlayerS1;
     GameObject[] LazerPlayerS1;
-
-
 
     GameObject[] BulletEnemyA;
     GameObject[] BulletEnemyB;
-    GameObject[] BulletFollower;
     GameObject[] BulletBossA;
     GameObject[] BulletBossB;
     GameObject[] explosion;
@@ -61,24 +49,18 @@ public class ObjectManager : MonoBehaviour
         enemyM = new GameObject[10];
         enemyS = new GameObject[20];
 
-        itemCoin= new GameObject[20];
-        itemPower= new GameObject[10];
-        itemBoom= new GameObject[10];
-
-        BulletPlayerA = new GameObject[100];
-        BulletPlayerB = new GameObject[100];
         LazerPlayerA = new GameObject[100];
-        BulletPlayerS1 = new GameObject[10];
         LazerPlayerS1 = new GameObject[10];
 
         BulletEnemyA = new GameObject[100];
         BulletEnemyB = new GameObject[100];
-        BulletFollower = new GameObject[100];
         BulletBossA = new GameObject[50];
         BulletBossB = new GameObject[1000];
+
         explosion = new GameObject[20];
 
         Exp= new GameObject[100];
+
         Generate();
     }
     void Generate()
@@ -104,41 +86,13 @@ public class ObjectManager : MonoBehaviour
             enemyS[i].SetActive(false);
 
         }
-        for (int i = 0; i < itemCoin.Length; i++)
-        {
-            itemCoin[i] = Instantiate(itemCoinPrefab);
-            itemCoin[i].SetActive(false);
-        }
-        for (int i = 0; i < itemPower.Length; i++)
-        {
-            itemPower[i] = Instantiate(itemPowerPrefab);
-            itemPower[i].SetActive(false);
-        }
-        for (int i = 0; i < itemBoom.Length; i++)
-        {
-            itemBoom[i] = Instantiate(itemBoomPrefab);
-            itemBoom[i].SetActive(false);
-        }
-        for (int i = 0; i < BulletPlayerA.Length; i++)
-        {
-            BulletPlayerA[i] = Instantiate(bulletPlayerAPrefab);
-            BulletPlayerA[i].SetActive(false);
-        }
-        for (int i = 0; i < BulletPlayerB.Length; i++)
-        {
-            BulletPlayerB[i] = Instantiate(bulletPlayerBPrefab);
-            BulletPlayerB[i].SetActive(false);
-        }
+        
         for (int i = 0; i < LazerPlayerA.Length; i++)
         {
             LazerPlayerA[i] = Instantiate(LazerPlayerAPrefab);
             LazerPlayerA[i].SetActive(false);
         }
-        for (int i = 0; i < BulletPlayerS1.Length; i++)
-        {
-            BulletPlayerS1[i] = Instantiate(bulletPlayerS1Prefab);
-            BulletPlayerS1[i].SetActive(false);
-        }
+      
         for (int i = 0; i < LazerPlayerS1.Length; i++)
         {
             LazerPlayerS1[i] = Instantiate(LazerPlayerS1Prefab);
@@ -154,11 +108,6 @@ public class ObjectManager : MonoBehaviour
         {
             BulletEnemyB[i] = Instantiate(bulletEnemyBPrefab);
             BulletEnemyB[i].SetActive(false);
-        }
-        for(int i=0;i<BulletFollower.Length;i++)
-        {
-            BulletFollower[i] = Instantiate(bulletFollowerPrefab);
-            BulletFollower[i].SetActive(false);
         }
         for (int i = 0; i < BulletBossA.Length; i++)
         {
@@ -199,26 +148,8 @@ public class ObjectManager : MonoBehaviour
             case "EnemyS":
                 targerPool = enemyS;
                 break;
-            case "ItemCoin":
-                targerPool = itemCoin;
-                break;
-            case "ItemPower":
-                targerPool = itemPower;
-                break;
-            case "ItemBoom":
-                targerPool = itemBoom;
-                break;
-            case "BulletPlayerA":
-                targerPool = BulletPlayerA;
-                break;
-            case "BulletPlayerB":
-                targerPool = BulletPlayerB;
-                break;
             case "LazerPlayerA":
                 targerPool = LazerPlayerA;
-                break;
-            case "BulletPlayerS1":
-                targerPool = BulletPlayerS1;
                 break;
             case "LazerPlayerS1":
                 targerPool = LazerPlayerS1;
@@ -228,9 +159,6 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "BulletEnemyB":
                 targerPool = BulletEnemyB;
-                break;
-            case "BulletFollow":
-                targerPool = BulletFollower;
                 break;
             case "BulletBossA":
                 targerPool = BulletBossA;
@@ -274,26 +202,8 @@ public class ObjectManager : MonoBehaviour
             case "EnemyS":
                 targerPool = enemyS;
                 break;
-            case "ItemCoin":
-                targerPool = itemCoin;
-                break;
-            case "itemPower":
-                targerPool = itemPower;
-                break;
-            case "itemBoom":
-                targerPool = itemBoom;
-                break;
-            case "BulletPlayerA":
-                targerPool = BulletPlayerA;
-                break;
-            case "BulletPlayerB":
-                targerPool = BulletPlayerB;
-                break;
             case "LazerPlayerA":
                 targerPool = LazerPlayerA;
-                break;
-            case "BulletPlayerS1":
-                targerPool = BulletPlayerS1;
                 break;
             case "LazerPlayerS1":
                 targerPool = LazerPlayerS1;
@@ -303,9 +213,6 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "BulletEnemyB":
                 targerPool = BulletEnemyB;
-                break;
-            case "BulletFollow":
-                targerPool = BulletFollower;
                 break;
             case "BulletBossA":
                 targerPool = BulletBossA;

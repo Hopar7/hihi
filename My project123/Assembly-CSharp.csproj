@@ -58,13 +58,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\asdasd.cs" />
+    <Compile Include="Assets\Scripts\Scenes2\GameStart.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Enemy.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Player.cs" />
-    <Compile Include="Assets\Scripts\Scenes2\SelectPlayer.cs" />
     <Compile Include="Assets\Scripts\Scenes1\GameManager.cs" />
     <Compile Include="Assets\CardScript\CardManager.cs" />
-    <Compile Include="Assets\Scripts\Scenes1\Player2.cs" />
     <Compile Include="Assets\Sound\SoundScript.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Pause.cs" />
     <Compile Include="Assets\ScriptableObject\ItemData.cs" />
@@ -74,10 +72,8 @@
     <Compile Include="Assets\Scripts\Scenes1\Bullet.cs" />
     <Compile Include="Assets\Scripts\Scenes1\ObjectManager.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Spawn.cs" />
-    <Compile Include="Assets\Scripts\Scenes3\ChangeCharacter.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Explosion.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Background.cs" />
-    <Compile Include="Assets\Scripts\Scenes2\ChangeStart.cs" />
     <Compile Include="Assets\Vertical 2D Shooting BE4\ReadMe\Scripts\ReadmeBE4.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,11 +82,8 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-    <None Include="Assets\Resources\Stage 3.txt" />
     <None Include="Assets\Resources\Stage 1.txt" />
-    <None Include="Assets\Resources\Stage 2.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\Resources\연휴끝나고 일.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5743942244295646305}
   - component: {fileID: 9130948367769418193}
-  - component: {fileID: 6391151508095862796}
+  - component: {fileID: 7327848068510752602}
   - component: {fileID: 1305184005402187987}
   - component: {fileID: 5157059430663978796}
   m_Layer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,8 +87,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6391151508095862796
-BoxCollider2D:
+--- !u!58 &7327848068510752602
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,22 +116,12 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 1.3333334, y: 1.125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3333334, y: 1.125}
-  m_EdgeRadius: 0
+  m_Radius: 0.3
 --- !u!50 &1305184005402187987
 Rigidbody2D:
   serializedVersion: 4
@@ -174,20 +164,18 @@ MonoBehaviour:
   enemyName: L
   enemyScore: 500
   speed: 1
-  health: 50
+  health: 75
   sprites:
   - {fileID: 1492666583, guid: af9ee34a305079b479aab2859fa6e150, type: 3}
-  - {fileID: 3714015224569861163, guid: 9e1e2d0fd11db9b4782a0780116be58e, type: 3}
+  - {fileID: 1492666583, guid: af9ee34a305079b479aab2859fa6e150, type: 3}
   MaxShotDelay: 4
   curShotDelay: 0
-  xp: {fileID: 0}
   bulletObjA: {fileID: 5247781614472598492, guid: 8ad1a421b7cd3424ca1af5895c3da79a, type: 3}
   bulletObjB: {fileID: 5247781614472598492, guid: 79e53634927ca72438ee317d66515164, type: 3}
   itemCoin: {fileID: 6902336467597851662, guid: f1ee05e6be603a8428d0786df65df09a, type: 3}
   itemPower: {fileID: 4530846440900244865, guid: 8f1b0ed3d5a54584a9f27b5d2e4007d9, type: 3}
   itemBoom: {fileID: 4477156264719260071, guid: 77e1f3c48ffb5594c955a768155daed4, type: 3}
   player: {fileID: 0}
-  player2: {fileID: 0}
   objectManager: {fileID: 0}
   gameManager: {fileID: 0}
   patternIndex: 0

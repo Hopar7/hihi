@@ -12,7 +12,7 @@ public class ItemData : ScriptableObject
         Damage_Up,
         Hp_Up,
         Speed_Up,
-        boomerang_Up,
+        ShootSpeed_Up,
         AddShoot,
         Exp_Up,
     }

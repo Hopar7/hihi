@@ -14,14 +14,10 @@ public class Enemy : MonoBehaviour
     public float MaxShotDelay;
     public float curShotDelay;
 
-    public GameObject xp;
+    
     public GameObject bulletObjA;
     public GameObject bulletObjB;
-    public GameObject itemCoin;
-    public GameObject itemPower;
-    public GameObject itemBoom;
     public GameObject player;
-    public GameObject player2;
     public ObjectManager objectManager;
     public GameManager gameManager;
     SpriteRenderer spriteRenderer;
@@ -45,17 +41,17 @@ public class Enemy : MonoBehaviour
         switch (enemyName)
         {
             case "B":
-                health = 50;
+                health = 500;
                 Invoke("Stop", 2);
                 break;
             case "L":
-                health = 40;
+                health = 130;
                 break;
             case "M":
-                health = 10;
+                health = 40;
                 break;
             case "S":
-                health = 3;
+                health = 10;
                 break;
         }
     }
@@ -133,14 +129,10 @@ public class Enemy : MonoBehaviour
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             Vector2 dirVec;
 
-            if (SelectPlayer.selectplayer == true)
-            {
+       
                 dirVec = player.transform.position - transform.position;
-            }
-            else
-            {
-               dirVec = player2.transform.position - transform.position;
-            }
+            
+      
             
 
 
@@ -221,9 +213,6 @@ public class Enemy : MonoBehaviour
 
         Reload();
 
-
-
-
     }
 
     void Fire()
@@ -241,16 +230,7 @@ public class Enemy : MonoBehaviour
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
 
             Vector3 driVec;
-            if (SelectPlayer.selectplayer == true)
-            {
-                driVec = player.transform.position - transform.position;
-            }
-            else
-            {
-                driVec = player2.transform.position - transform.position;
-            }
-                
-
+            driVec = player.transform.position - transform.position;
             rigid.AddForce(driVec.normalized * 4, ForceMode2D.Impulse);
         }
         else if (enemyName == "L")
@@ -259,39 +239,25 @@ public class Enemy : MonoBehaviour
             bulletR.transform.position = transform.position + Vector3.right * 0.3f;
             GameObject bulletL = objectManager.Makeobj("BulletEnemyB");
             bulletL.transform.position = transform.position + Vector3.left * 0.3f;
-
-
             Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
             Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
             Vector3 driVecR;
             Vector3 driVecL;
-            if (SelectPlayer.selectplayer == true)
-            {
-                driVecR = player.transform.position - (transform.position + Vector3.right * 0.3f);
-                driVecL = player.transform.position - (transform.position + Vector3.left * 0.3f);
-            }
-            else
-            {
-                driVecR = player2.transform.position - (transform.position + Vector3.right * 0.3f);
-                driVecL = player2.transform.position - (transform.position + Vector3.left * 0.3f);
-            }
-
-
-
+            
+            driVecR = player.transform.position - (transform.position + Vector3.right * 0.3f);
+            driVecL = player.transform.position - (transform.position + Vector3.left * 0.3f);
+           
             rigidR.AddForce(driVecR.normalized * 4, ForceMode2D.Impulse);
             rigidL.AddForce(driVecL.normalized * 4, ForceMode2D.Impulse);
         }
 
-
         curShotDelay = 0;
-
     }
 
     void Reload()
     {
         curShotDelay += Time.deltaTime;
     }
-
     public void OnHit(int dmg)
     {
         if (health <= 0)
@@ -307,57 +273,43 @@ public class Enemy : MonoBehaviour
         else
         {
             spriteRenderer.sprite = sprites[1];
-            Invoke("ReturnSprite", 0.1f);
+            Invoke("ReturnSprite", 0.05f);
 
         }
-
-
-
         if (health <= 0)
         {
             Player playerLogic = player.GetComponent<Player>(); 
-            Player2 playerLogic2 = player2.GetComponent<Player2>();
             playerLogic.score += enemyScore;
-            playerLogic2.score += enemyScore;
-           
-
 
             //Random ratio Item Drop
             int ran = enemyName == "B" ? 0 : UnityEngine.Random.Range(0, 10);
-            if (ran < 4) //Not Item 40%
+            if (ran < 4) //40%
             {
                
                 GameObject exp = objectManager.Makeobj("Exp");
                 exp.transform.position = transform.position;
-                Debug.Log("Not Item");
+                Debug.Log("EXP");
             }
-            else if (ran < 7) //Coin 30%
+            else if (ran < 7) //30%
             {
-                //GameObject itemCoin = objectManager.Makeobj("ItemCoin");
-                //itemCoin.transform.position = transform.position;
                 GameObject exp = objectManager.Makeobj("Exp");
                 exp.transform.position = transform.position;
 
-                Debug.Log("Coin");
+                Debug.Log("EXP");
             }
-            else if (ran < 9) //Power 20%
+            else if (ran < 9) //20%
             {
-                //GameObject itemPower = objectManager.Makeobj("ItemPower");
-                //itemPower.transform.position = transform.position;
                 GameObject exp = objectManager.Makeobj("Exp");
                 exp.transform.position = transform.position;
 
-                Debug.Log("Power");
+                Debug.Log("EXP");
             }
-            else if (ran < 10) //Boom 10%
+            else if (ran < 10) //10%
             {
-                // GameObject itemBoom = objectManager.Makeobj("ItemBoom");
-                // itemBoom.transform.position = transform.position;
                 GameObject exp = objectManager.Makeobj("Exp");
                 exp.transform.position = transform.position;
 
-
-                Debug.Log("Boom");
+                Debug.Log("EXP");
             }
 
 
@@ -384,7 +336,6 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.tag=="BorderBullet" && enemyName !="B")
         {
-
             gameObject.SetActive(false);
             transform.rotation = Quaternion.identity;
         }
@@ -393,12 +344,9 @@ public class Enemy : MonoBehaviour
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
             collision.gameObject.SetActive(false);
+            Player playerLogic = player.GetComponent<Player>();
 
-            OnHit(bullet.dmg);
-
-            
-
-           
+            OnHit(playerLogic.power);
         }
         else if(collision.gameObject.tag == "SpecialBullet")
         {

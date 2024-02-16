@@ -14,7 +14,7 @@ public class Explosion : MonoBehaviour
     }
     void OnEnable()
     {
-        Invoke("Disable", 1.5f);    
+        Invoke("Disable", 0.5f);    
     }
     void Disable()
     {
@@ -33,8 +33,10 @@ public class Explosion : MonoBehaviour
                 transform.localScale = Vector3.one * 0.7f;
                 break;
             case "M":
-            case "P":
                 transform.localScale = Vector3.one * 1f;
+                break;
+            case "P":
+                transform.localScale = Vector3.one * 0.5f;
                 break;
             case "L":
                 transform.localScale = Vector3.one * 2f;

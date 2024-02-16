@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     public float curSpawnDelay;
 
     public GameObject player;
-    public GameObject player2;
     public Text scoreText;
     public GameObject gameOverSet;
 
@@ -53,6 +52,7 @@ public class GameManager : MonoBehaviour
        enemyObjs = new string[] {"EnemyS","EnemyM","EnemyL", "EnemyB" };
         StageStart();
         ActivePlayer();
+        CardReset();
     }
     void Update()
     {
@@ -66,27 +66,13 @@ public class GameManager : MonoBehaviour
         }
 
         Player playerLogic = player.GetComponent<Player>();
-        Player2 playerLogic2 = player2.GetComponent<Player2>();
-
-        if (SelectPlayer.selectplayer == true)
-        {
             scoreText.text = string.Format("{0:n0}", playerLogic.score);
-        }
-        else
-        {
-            scoreText.text = string.Format("{0:n0}", playerLogic2.score);
-        }
+        
     }
 
     void LevelUp()
     {
-        
-
-
-
-
-
-
+ 
         if (xpSlider.value >= 1)
         {
             Time.timeScale = 0;
@@ -100,13 +86,59 @@ public class GameManager : MonoBehaviour
 
 
             xpSlider.value = 0;
-            //Time.timeScale = 1;
         }
 
 
 
     }
-    
+    public void DamageUp()
+    {
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.power++;
+
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void SpeedUp()
+    {
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.speed++;
+
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void HpUp()
+    {
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.life++;
+        playerLogic.hpSprite.size += new Vector2(0.1f, 0f);
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void ShootSpeedUp()
+    {
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.maxShotDelay -= 0.08f;
+
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void AddShoot()
+    {
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.shoot++;
+
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void ExpUp()
+    {
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.exp += 0.1f;
+
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
     
 
 
@@ -117,17 +149,16 @@ public class GameManager : MonoBehaviour
 
     void ActivePlayer()
     {
-        if(SelectPlayer.selectplayer == true)
-        {
+        
             player.SetActive(true);
-
-        }
-        else
+    }
+    void CardReset()
+    {
+        for(int i=0;i<Card.Length;i++)
         {
-            player2.SetActive(true);
+            Card[i].skillLevel = 0;
         }
     }
-
 
 
     public void StageStart()
@@ -152,10 +183,9 @@ public class GameManager : MonoBehaviour
         FadeAnim.SetTrigger("Out");
         //Player Repos
         player.transform.position = playerPos.position;
-        player2.transform.position = playerPos.position;
         //Stage Increament
         stage++;
-        if(stage >2)
+        if(stage >1)
         {
             GameOver();
         }
@@ -177,6 +207,7 @@ public class GameManager : MonoBehaviour
         
         while(stringReader != null)
         {
+
             string line = stringReader.ReadLine();
            // Debug.Log(line);
             if (line == null)
@@ -228,7 +259,6 @@ public class GameManager : MonoBehaviour
         Rigidbody2D rigid = enemy.gameObject.GetComponent<Rigidbody2D>();
         Enemy enemyLogic = enemy.GetComponent<Enemy>();
         enemyLogic.player = player;
-        enemyLogic.player2 = player2;
         enemyLogic.gameManager = this;
         enemyLogic.objectManager = objectManager;
 
@@ -278,26 +308,9 @@ public class GameManager : MonoBehaviour
 
     void RespawnPlayerExe()
     {
-
-        if (SelectPlayer.selectplayer == true)
-        {
             player.transform.position = Vector3.down * 3.5f;
             player.SetActive(true);
-
             Player playerLogic = player.GetComponent<Player>();
-            playerLogic.isHit = false;
-        }
-        /*
-        else
-        {
-            player2.transform.position = Vector3.down * 3.5f;
-            player2.SetActive(true);
-
-            Player2 playerLogic2 = player2.GetComponent<Player2>();
-            playerLogic2.isHit = false;
-        }
-        */
-
     }
 
     public void GameOver()
