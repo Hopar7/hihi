@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1318948683482235925}
   - component: {fileID: 5676620929755217863}
   - component: {fileID: 7320030635698820638}
+  - component: {fileID: -798488801273815582}
   m_Layer: 0
   m_Name: Enemy S
   m_TagString: Enemy
@@ -116,7 +117,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -163,21 +164,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: S
   enemyScore: 50
-  speed: 3
+  speed: 1
   health: 3
-  sprites:
-  - {fileID: -565746319, guid: af9ee34a305079b479aab2859fa6e150, type: 3}
-  - {fileID: -565746319, guid: af9ee34a305079b479aab2859fa6e150, type: 3}
   MaxShotDelay: 3
   curShotDelay: 0
   bulletObjA: {fileID: 5247781614472598492, guid: 8ad1a421b7cd3424ca1af5895c3da79a, type: 3}
   bulletObjB: {fileID: 5247781614472598492, guid: 79e53634927ca72438ee317d66515164, type: 3}
-  itemCoin: {fileID: 6902336467597851662, guid: f1ee05e6be603a8428d0786df65df09a, type: 3}
-  itemPower: {fileID: 4530846440900244865, guid: 8f1b0ed3d5a54584a9f27b5d2e4007d9, type: 3}
-  itemBoom: {fileID: 4477156264719260071, guid: 77e1f3c48ffb5594c955a768155daed4, type: 3}
   player: {fileID: 0}
   objectManager: {fileID: 0}
   gameManager: {fileID: 0}
   patternIndex: 0
   curPatternCount: 0
   maxPatternCount: 
+--- !u!95 &-798488801273815582
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677706052436235147}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: da0cc18f99bce7642864d8c26a75524d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

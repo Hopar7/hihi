@@ -9,8 +9,7 @@ public class Enemy : MonoBehaviour
     public int enemyScore;
     public float speed;
     public int health;
-    public Sprite[] sprites;
-
+   
     public float MaxShotDelay;
     public float curShotDelay;
 
@@ -31,9 +30,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (enemyName == "B")
-            anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void OnEnable()
@@ -225,13 +222,13 @@ public class Enemy : MonoBehaviour
 
         if (enemyName == "S")
         {
-            GameObject bullet = objectManager.Makeobj("BulletEnemyA");
-            bullet.transform.position = transform.position;
-            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+            //GameObject bullet = objectManager.Makeobj("BulletEnemyA");
+            //bullet.transform.position = transform.position;
+            //Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
 
-            Vector3 driVec;
-            driVec = player.transform.position - transform.position;
-            rigid.AddForce(driVec.normalized * 4, ForceMode2D.Impulse);
+            //Vector3 driVec;
+           // driVec = player.transform.position - transform.position;
+            //rigid.AddForce(driVec.normalized * 4, ForceMode2D.Impulse);
         }
         else if (enemyName == "L")
         {
@@ -266,16 +263,9 @@ public class Enemy : MonoBehaviour
 
 
         health -= dmg;
-        if (enemyName == "B")
-        {
-            anim.SetTrigger("OnHit");
-        }
-        else
-        {
-            spriteRenderer.sprite = sprites[1];
-            Invoke("ReturnSprite", 0.05f);
-
-        }
+        anim.SetTrigger("OnHit");
+        
+       
         if (health <= 0)
         {
             Player playerLogic = player.GetComponent<Player>(); 
@@ -328,10 +318,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void ReturnSprite()
-    { 
-        spriteRenderer.sprite = sprites[0];
-    }
+    
      void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag=="BorderBullet" && enemyName !="B")

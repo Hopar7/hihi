@@ -1841,6 +1841,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
       propertyPath: shoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
+      propertyPath: speed
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
@@ -1851,6 +1855,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 555927436}
+    - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
+      propertyPath: isTouchRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
+      propertyPath: maxShotDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
       propertyPath: objectManager
       value: 
@@ -2300,7 +2312,7 @@ MonoBehaviour:
   - {fileID: 1625410395}
   - {fileID: 272450150}
   - {fileID: 520741483}
-  nextSpawnDelay: 0
+  nextSpawnDelay: 3
   curSpawnDelay: 0
   player: {fileID: 3845752129119215553}
   scoreText: {fileID: 270174945}
@@ -8340,7 +8352,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1171720451}
   m_HandleRect: {fileID: 0}

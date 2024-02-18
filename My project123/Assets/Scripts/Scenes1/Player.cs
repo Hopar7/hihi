@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
     void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");  //수평동작 키 키보드
+        
         float v = Input.GetAxisRaw("Vertical");  //수직동작 키 키보드
 
         //if (JoyControl[0]) { h = -1; v = 1; }
@@ -120,9 +121,9 @@ public class Player : MonoBehaviour
 
 
 
-        if ((isTouchRight && h == 1) || (isTouchLeft && h == -1) /*|| !isControl*/)
+        if ((h == 1 && isTouchRight) || (h == -1 && isTouchLeft) /*|| !isControl*/)
             h = 0;
-        if ((isTouchTop && v == 1) || (isTouchBottom && v == -1) /*|| !isControl*/)
+        if ((v == 1 && isTouchTop) || (v == -1 && isTouchBottom) /*|| !isControl*/)
             v = 0;
 
         Vector3 curPos = transform.position;  // 처음위치

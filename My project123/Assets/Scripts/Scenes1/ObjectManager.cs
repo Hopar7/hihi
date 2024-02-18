@@ -49,7 +49,7 @@ public class ObjectManager : MonoBehaviour
         enemyM = new GameObject[10];
         enemyS = new GameObject[20];
 
-        LazerPlayerA = new GameObject[100];
+        LazerPlayerA = new GameObject[300];
         LazerPlayerS1 = new GameObject[10];
 
         BulletEnemyA = new GameObject[100];

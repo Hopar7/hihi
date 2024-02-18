@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     public GameObject levelUpUi;
 
 
-    public List<Spawn> spawnList;
     public int spawnIndex;
     public bool spawnEnd;
 
@@ -47,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        spawnList =new List<Spawn>();
+       
 
        enemyObjs = new string[] {"EnemyS","EnemyM","EnemyL", "EnemyB" };
         StageStart();
@@ -58,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         curSpawnDelay += Time.deltaTime;
         LevelUp();
-        if (curSpawnDelay > nextSpawnDelay && !spawnEnd)
+        if (curSpawnDelay > nextSpawnDelay)
         {
             SpawnEnemy();
 
@@ -168,7 +167,7 @@ public class GameManager : MonoBehaviour
         StageAnim.GetComponent<Text>().text = "Stage" + stage + "\nStart";
         StageAnim.GetComponent<Text>().text = "Stage" + stage + "\nClear";
         //Enemy Spawn File Read
-        ReadSpawnFile();
+       // ReadSpawnFile();
 
 
         //Fade In
@@ -195,7 +194,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-
+    /*
     void ReadSpawnFile()
     {
         spawnList.Clear();
@@ -225,7 +224,7 @@ public class GameManager : MonoBehaviour
 
         nextSpawnDelay = spawnList[0].delay;
     }
-
+    */
 
 
   
@@ -233,7 +232,22 @@ public class GameManager : MonoBehaviour
     void SpawnEnemy()
     {
         int enemyIndex = 0;
-        switch(spawnList[spawnIndex].type)
+        string sEnemy = "S";
+        //초반엔S만 나오게 시간이지날수록 M,L "같이"생성
+        // 초반에 어느정도 잡다가 B생성
+        // 임시 S도 나오되 M과 L은 S보다 빈도가 작아야함.
+        if (nextSpawnDelay <= 2)
+        {
+            sEnemy = "M";
+        }
+        if (nextSpawnDelay <=1)
+        {
+            sEnemy = "L";
+        }
+
+
+
+        switch(sEnemy)
         {
             case "S":
                 enemyIndex = 0;
@@ -252,7 +266,7 @@ public class GameManager : MonoBehaviour
 
 
         
-        int enemyPoint = spawnList[spawnIndex].point;
+        int enemyPoint = UnityEngine.Random.Range(0,8);
         GameObject enemy = objectManager.Makeobj(enemyObjs[enemyIndex]);
         enemy.transform.position = spawnPoints[enemyPoint].position;
 
@@ -276,16 +290,16 @@ public class GameManager : MonoBehaviour
         {
             rigid.velocity = new Vector2 (0,enemyLogic.speed*(-1));
         }
-
-        //리스폰
-        spawnIndex++;
-        if(spawnIndex == spawnList.Count)
+        //시간이 갈수록 딜레이 감소
+        if (nextSpawnDelay >1)
         {
-            spawnEnd = true;
-            return;
+            nextSpawnDelay -= 0.04f;
         }
-
-        nextSpawnDelay = spawnList[spawnIndex].delay;
+        else
+        {
+            nextSpawnDelay = 1;
+        }
+       
         
 
     }
