@@ -6,12 +6,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using static ItemData;
 
 public class GameManager : MonoBehaviour
 {
     public Slider xpSlider;
 
     public ItemData[] Card;
+
+    public int playerLevel;
+    public int bigEnemy;
+
 
 
     public int stage;
@@ -25,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public float nextSpawnDelay;
     public float curSpawnDelay;
+    public float spawnUpTime;
+
 
     public GameObject player;
     public Text scoreText;
@@ -40,21 +47,23 @@ public class GameManager : MonoBehaviour
     public int spawnIndex;
     public bool spawnEnd;
 
- 
 
+    public bool spawnBoss;
 
+    private int enemyPoint;
 
     void Awake()
     {
-       
 
-       enemyObjs = new string[] {"EnemyS","EnemyM","EnemyL", "EnemyB" };
+
+        enemyObjs = new string[] { "EnemyS", "EnemyM", "EnemyL", "EnemyB" };
         StageStart();
         ActivePlayer();
         CardReset();
     }
     void Update()
     {
+        spawnUpTime += Time.deltaTime;
         curSpawnDelay += Time.deltaTime;
         LevelUp();
         if (curSpawnDelay > nextSpawnDelay)
@@ -65,23 +74,20 @@ public class GameManager : MonoBehaviour
         }
 
         Player playerLogic = player.GetComponent<Player>();
-            scoreText.text = string.Format("{0:n0}", playerLogic.score);
-        
+        scoreText.text = string.Format("{0:n0}", playerLogic.score);
+
     }
 
     void LevelUp()
     {
- 
+
         if (xpSlider.value >= 1)
         {
             Time.timeScale = 0;
+            playerLevel++;
+            
             cardManager.CardSet();
             levelUpUi.SetActive(true);
-
-
-
-
-
 
 
             xpSlider.value = 0;
@@ -138,22 +144,16 @@ public class GameManager : MonoBehaviour
         levelUpUi.SetActive(false);
         Time.timeScale = 1;
     }
-    
-
-
-
-
-
 
 
     void ActivePlayer()
     {
-        
-            player.SetActive(true);
+
+        player.SetActive(true);
     }
     void CardReset()
     {
-        for(int i=0;i<Card.Length;i++)
+        for (int i = 0; i < Card.Length; i++)
         {
             Card[i].skillLevel = 0;
         }
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
         StageAnim.GetComponent<Text>().text = "Stage" + stage + "\nStart";
         StageAnim.GetComponent<Text>().text = "Stage" + stage + "\nClear";
         //Enemy Spawn File Read
-       // ReadSpawnFile();
+        // ReadSpawnFile();
 
 
         //Fade In
@@ -177,14 +177,14 @@ public class GameManager : MonoBehaviour
     {
         //Clear UI Load
         ClearAnim.SetTrigger("On");
-       
+
         //Fade Out
         FadeAnim.SetTrigger("Out");
         //Player Repos
         player.transform.position = playerPos.position;
         //Stage Increament
         stage++;
-        if(stage >1)
+        if (stage > 1)
         {
             GameOver();
         }
@@ -194,60 +194,38 @@ public class GameManager : MonoBehaviour
     }
 
 
-    /*
-    void ReadSpawnFile()
-    {
-        spawnList.Clear();
-        spawnIndex = 0;
-        spawnEnd = false;
-
-        TextAsset textFile = Resources.Load("Stage " + stage) as TextAsset;
-        StringReader stringReader = new StringReader(textFile.text);
-        
-        while(stringReader != null)
-        {
-
-            string line = stringReader.ReadLine();
-           // Debug.Log(line);
-            if (line == null)
-                break;
-
-
-            Spawn spawnDate = new Spawn();
-            spawnDate.delay = float.Parse(line.Split(',')[0]);
-            spawnDate.type = line.Split(',')[1];
-            spawnDate.point = int.Parse(line.Split(',')[2]);
-            spawnList.Add(spawnDate);
-        }
-
-        stringReader.Close();
-
-        nextSpawnDelay = spawnList[0].delay;
-    }
-    */
-
-
-  
-
     void SpawnEnemy()
     {
+        if (spawnBoss)
+        {
+            return;
+        }
+
         int enemyIndex = 0;
         string sEnemy = "S";
         //초반엔S만 나오게 시간이지날수록 M,L "같이"생성
         // 초반에 어느정도 잡다가 B생성
         // 임시 S도 나오되 M과 L은 S보다 빈도가 작아야함.
-        if (nextSpawnDelay <= 2)
+        if (bigEnemy % 10 == 0)
         {
             sEnemy = "M";
+            
         }
-        if (nextSpawnDelay <=1)
+        if (bigEnemy % 20 == 0)
         {
             sEnemy = "L";
+            
         }
+        if (bigEnemy % 30 == 0)
+        {
+            sEnemy = "B";
+            
+            spawnBoss = true;
+        }
+        bigEnemy++;
 
 
-
-        switch(sEnemy)
+        switch (sEnemy)
         {
             case "S":
                 enemyIndex = 0;
@@ -265,8 +243,36 @@ public class GameManager : MonoBehaviour
         }
 
 
+
+        List<int> EnemyList = new List<int>();
+        int currentNumber = Random.Range(0, 8);
+
+        for (int i = 0; i < 3;)
+        {
+            if (EnemyList.Contains(currentNumber))
+            {
+                currentNumber = Random.Range(0, 8);
+            }
+            else
+            {
+                EnemyList.Add(currentNumber);
+                i++;
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+
+            if (enemyIndex == 3)
+            {
+                enemyPoint = 2;
+            }
+            else
+            {
+                enemyPoint = EnemyList[i];
+            }
         
-        int enemyPoint = UnityEngine.Random.Range(0,8);
+
         GameObject enemy = objectManager.Makeobj(enemyObjs[enemyIndex]);
         enemy.transform.position = spawnPoints[enemyPoint].position;
 
@@ -276,10 +282,10 @@ public class GameManager : MonoBehaviour
         enemyLogic.gameManager = this;
         enemyLogic.objectManager = objectManager;
 
-        if(enemyPoint == 5 || enemyPoint == 6 )
+        if (enemyPoint == 5 || enemyPoint == 6)
         {
-            enemy.transform.Rotate(Vector3.back*90);
-            rigid.velocity = new Vector2(enemyLogic.speed*(-1),-1);
+            enemy.transform.Rotate(Vector3.back * 90);
+            rigid.velocity = new Vector2(enemyLogic.speed * (-1), -1);
         }
         else if (enemyPoint == 7 || enemyPoint == 8)
         {
@@ -288,19 +294,27 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            rigid.velocity = new Vector2 (0,enemyLogic.speed*(-1));
+            rigid.velocity = new Vector2(0, enemyLogic.speed * (-1));
         }
+        if (enemyIndex == 3)
+        {
+            break;
+        }
+    }
         //시간이 갈수록 딜레이 감소
-        if (nextSpawnDelay >1)
+        if (spawnUpTime > 15)
         {
-            nextSpawnDelay -= 0.04f;
+            spawnUpTime = 0;
+            if (nextSpawnDelay > 1)
+            {
+                nextSpawnDelay -= 0.04f;
+            }
+            else
+            {
+                nextSpawnDelay = 1;
+            }
+
         }
-        else
-        {
-            nextSpawnDelay = 1;
-        }
-       
-        
 
     }
    

@@ -1390,7 +1390,7 @@ Transform:
   m_GameObject: {fileID: 272450149}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.01, y: -2.51, z: 0}
+  m_LocalPosition: {x: -4.01, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1837,7 +1837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
       propertyPath: power
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
       propertyPath: shoot
@@ -1845,7 +1845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
       propertyPath: speed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5622487838961299366, guid: 7abc737400eda5e48b4c771777358dfb, type: 3}
       propertyPath: hpSprite
@@ -1989,7 +1989,7 @@ Transform:
   m_GameObject: {fileID: 520741482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0100007, y: -4.47, z: 0}
+  m_LocalPosition: {x: -4.0100007, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2296,6 +2296,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: efed07371445b7a45bffc43b37a6f95e, type: 2}
   - {fileID: 11400000, guid: ddfb5f80e11bf5f45a23bc71cee0515d, type: 2}
   - {fileID: 11400000, guid: e120d14c4718f554c9b77242c2d7315e, type: 2}
+  playerLevel: 0
+  bigEnemy: 1
   stage: 1
   StageAnim: {fileID: 739751237}
   ClearAnim: {fileID: 1958303596}
@@ -2314,6 +2316,7 @@ MonoBehaviour:
   - {fileID: 520741483}
   nextSpawnDelay: 3
   curSpawnDelay: 0
+  spawnUpTime: 0
   player: {fileID: 3845752129119215553}
   scoreText: {fileID: 270174945}
   gameOverSet: {fileID: 1735269832}
@@ -2322,6 +2325,7 @@ MonoBehaviour:
   levelUpUi: {fileID: 1275961042}
   spawnIndex: 0
   spawnEnd: 0
+  spawnBoss: 0
 --- !u!4 &555927437
 Transform:
   m_ObjectHideFlags: 0
@@ -7419,7 +7423,7 @@ Transform:
   m_GameObject: {fileID: 1625410394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.02, y: -4.47, z: 0}
+  m_LocalPosition: {x: 4.02, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8269,7 +8273,7 @@ Transform:
   m_GameObject: {fileID: 1890927869}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.02, y: -2.51, z: 0}
+  m_LocalPosition: {x: 4.02, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

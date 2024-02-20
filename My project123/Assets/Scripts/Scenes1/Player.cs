@@ -22,8 +22,6 @@ public class Player : MonoBehaviour
     public int shoot;
     public float exp;
 
-    public int boom;
-    public int Maxboom;
     public float maxPower;
     public float maxShotDelay;
     public float curShotDelay;
@@ -292,27 +290,7 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.tag == "Item")
         {
             Item item = collision.gameObject.GetComponent<Item>();
-            switch (item.type)
-            {
-                case "Coin":
-                    score += 1000;
-                    break;
-                case "Power":
-                    if (power == maxPower)
-                        score += 500;
-                    else
-                    {
-                        power++;
-                        
-                    }
-                    break;
-
-                case "Boom":
-                    if (boom == Maxboom)
-                        score += 500;
-                    break;
-
-            }
+            
             collision.gameObject.SetActive(false);
         }
 

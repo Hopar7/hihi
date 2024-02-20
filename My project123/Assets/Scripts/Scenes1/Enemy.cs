@@ -8,8 +8,10 @@ public class Enemy : MonoBehaviour
     public string enemyName;
     public int enemyScore;
     public float speed;
+
     public int health;
-   
+    public int enemyHealth;
+
     public float MaxShotDelay;
     public float curShotDelay;
 
@@ -38,17 +40,17 @@ public class Enemy : MonoBehaviour
         switch (enemyName)
         {
             case "B":
-                health = 500;
+                health = enemyHealth;
                 Invoke("Stop", 2);
                 break;
             case "L":
-                health = 130;
+                health = enemyHealth;
                 break;
             case "M":
-                health = 40;
+                health = enemyHealth;
                 break;
             case "S":
-                health = 10;
+                health = enemyHealth;
                 break;
         }
     }
@@ -313,6 +315,7 @@ public class Enemy : MonoBehaviour
             if(enemyName == "B")
             {
                 gameManager.StageEnd();
+                gameManager.spawnBoss = false;
             }
 
         }

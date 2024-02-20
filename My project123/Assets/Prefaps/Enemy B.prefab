@@ -152,7 +152,7 @@ MonoBehaviour:
   enemyScore: 5000
   speed: 1.5
   health: 300
-  sprites: []
+  enemyHealth: 300
   MaxShotDelay: 0
   curShotDelay: 0
   bulletObjA: {fileID: 0}

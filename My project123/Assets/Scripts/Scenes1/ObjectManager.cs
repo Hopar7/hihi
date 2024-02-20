@@ -86,7 +86,6 @@ public class ObjectManager : MonoBehaviour
             enemyS[i].SetActive(false);
 
         }
-        
         for (int i = 0; i < LazerPlayerA.Length; i++)
         {
             LazerPlayerA[i] = Instantiate(LazerPlayerAPrefab);
