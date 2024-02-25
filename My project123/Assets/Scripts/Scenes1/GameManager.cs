@@ -116,7 +116,9 @@ public class GameManager : MonoBehaviour
     {
         Player playerLogic = player.GetComponent<Player>();
         playerLogic.life++;
+        
         playerLogic.hpSprite.size += new Vector2(0.1f, 0f);
+        playerLogic.hpSprite.transform.position += (Vector3.right * 0.035f);
         levelUpUi.SetActive(false);
         Time.timeScale = 1;
     }

@@ -12,6 +12,8 @@ TagManager:
   - Item
   - SpecialBullet
   - Exp
+  - Exp2
+  - Exp3
   layers:
   - Default
   - TransparentFX

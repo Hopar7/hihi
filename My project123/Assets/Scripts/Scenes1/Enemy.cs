@@ -273,36 +273,29 @@ public class Enemy : MonoBehaviour
             Player playerLogic = player.GetComponent<Player>(); 
             playerLogic.score += enemyScore;
 
-            //Random ratio Item Drop
-            int ran = enemyName == "B" ? 0 : UnityEngine.Random.Range(0, 10);
-            if (ran < 4) //40%
+            if (enemyName == "S")
             {
+                GameObject exp = objectManager.Makeobj("Exp");
+                exp.transform.position = transform.position;
+
+                Debug.Log("EXP");
+            }
+            else if(enemyName == "M")
+            {
+                GameObject exp = objectManager.Makeobj("Exp2");
+                exp.transform.position = transform.position;
+
+                Debug.Log("EXP2");
+            }
+            else if(enemyName == "L")
+            {
+                GameObject exp = objectManager.Makeobj("Exp3");
+                exp.transform.position = transform.position;
+
+                Debug.Log("EXP3");
+            }
+
                
-                GameObject exp = objectManager.Makeobj("Exp");
-                exp.transform.position = transform.position;
-                Debug.Log("EXP");
-            }
-            else if (ran < 7) //30%
-            {
-                GameObject exp = objectManager.Makeobj("Exp");
-                exp.transform.position = transform.position;
-
-                Debug.Log("EXP");
-            }
-            else if (ran < 9) //20%
-            {
-                GameObject exp = objectManager.Makeobj("Exp");
-                exp.transform.position = transform.position;
-
-                Debug.Log("EXP");
-            }
-            else if (ran < 10) //10%
-            {
-                GameObject exp = objectManager.Makeobj("Exp");
-                exp.transform.position = transform.position;
-
-                Debug.Log("EXP");
-            }
 
 
 

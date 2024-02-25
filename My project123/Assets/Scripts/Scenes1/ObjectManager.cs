@@ -21,6 +21,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject explosionPrefab;
 
     public GameObject expPrefab;
+    public GameObject exp2Prefab;
+    public GameObject exp3Prefab;
 
     GameObject[] enemyB;
     GameObject[] enemyL;
@@ -39,6 +41,8 @@ public class ObjectManager : MonoBehaviour
     GameObject[] explosion;
 
     GameObject[] Exp;
+    GameObject[] Exp2;
+    GameObject[] Exp3;
 
     GameObject[] targerPool;
 
@@ -60,6 +64,8 @@ public class ObjectManager : MonoBehaviour
         explosion = new GameObject[20];
 
         Exp= new GameObject[100];
+        Exp2 = new GameObject[100];
+        Exp3 = new GameObject[100];
 
         Generate();
     }
@@ -123,10 +129,20 @@ public class ObjectManager : MonoBehaviour
             explosion[i] = Instantiate(explosionPrefab);
             explosion[i].SetActive(false);
         }
-        for(int i = 0; i <Exp.Length; i++)
+        for (int i = 0; i < Exp.Length; i++)
         {
-            Exp[i] = Instantiate (expPrefab);
+            Exp[i] = Instantiate(expPrefab);
             Exp[i].SetActive(false);
+        }
+        for (int i = 0; i < Exp2.Length; i++)
+        {
+            Exp2[i] = Instantiate(exp2Prefab);
+            Exp2[i].SetActive(false);
+        }
+        for (int i = 0; i < Exp3.Length; i++)
+        {
+            Exp3[i] = Instantiate(exp3Prefab);
+            Exp3[i].SetActive(false);
         }
 
     }
@@ -170,6 +186,12 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "Exp":
                 targerPool = Exp;
+                break;
+            case "Exp2":
+                targerPool = Exp2;
+                break;
+            case "Exp3":
+                targerPool = Exp3;
                 break;
 
         }
@@ -224,6 +246,12 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "Exp":
                 targerPool = Exp;
+                break;
+            case "Exp2":
+                targerPool = Exp2;
+                break;
+            case "Exp3":
+                targerPool = Exp3;
                 break;
         }
 

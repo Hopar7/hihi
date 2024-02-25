@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -31,8 +32,6 @@ public class Player : MonoBehaviour
     public GameManager gameManager;
     public ObjectManager objectManager;
 
-
-    //public GameObject[] followers;
     public bool isRespawnTime;
 
     public bool[] JoyControl;
@@ -142,19 +141,6 @@ public class Player : MonoBehaviour
 
 
 
-        /*
-        if (skilTime >= 1.5f)
-        {
-            GameObject bullet = objectManager.Makeobj("LazerPlayerS1");
-            bullet.transform.position = transform.position;
-
-            Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-            rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-            curShotDelay = 0;
-        }
-        */
-
-
     }
 
 
@@ -166,6 +152,24 @@ public class Player : MonoBehaviour
     }
    
 
+    void ShootRightAdd(float position)
+    {
+        GameObject bullet = objectManager.Makeobj("LazerPlayerA");
+        bullet.transform.position = transform.position + Vector3.right *position;
+
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+        
+    }
+    void ShootLeftAdd(float position)
+    {
+        GameObject bullet = objectManager.Makeobj("LazerPlayerA");
+        bullet.transform.position = transform.position + Vector3.left * position;
+
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+
+    }
 
 
     public void Fire()
@@ -185,63 +189,41 @@ public class Player : MonoBehaviour
         switch (shoot)
         {
             case 1:
-                GameObject bullet = objectManager.Makeobj("LazerPlayerA");
-                bullet.transform.position = transform.position;
-
-                Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
-                rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                ShootRightAdd(0);
+               
                 break;
             case 2:
-                GameObject bulletR = objectManager.Makeobj("LazerPlayerA");
-                bulletR.transform.position = transform.position + Vector3.right * 0.05f;
-
-                GameObject bulletL = objectManager.Makeobj("LazerPlayerA");
-                bulletL.transform.position = transform.position + Vector3.left * 0.05f;
-
-                Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
-                Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
-                rigidR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                ShootRightAdd(0.05f);
+                ShootLeftAdd(0.05f);
                 
                 break;
             case 3:
-                GameObject bulletRR = objectManager.Makeobj("LazerPlayerA");
-                bulletRR.transform.position = transform.position + Vector3.right * 0.15f;
-                GameObject bulletLL = objectManager.Makeobj("LazerPlayerA");
-                bulletLL.transform.position = transform.position + Vector3.left * 0.15f;
-
-                GameObject bulletCC = objectManager.Makeobj("LazerPlayerA");
-                bulletCC.transform.position = transform.position;
-                Rigidbody2D rigidRR = bulletRR.GetComponent<Rigidbody2D>();
-                Rigidbody2D rigidLL = bulletLL.GetComponent<Rigidbody2D>();
-                Rigidbody2D rigidCC = bulletCC.GetComponent<Rigidbody2D>();
-                rigidRR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                rigidLL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                rigidCC.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                ShootRightAdd(0.1f);
+                ShootRightAdd(0);
+                ShootLeftAdd(0.1f);
                 
                 break;
-            default:
-                GameObject bulletRR1 = objectManager.Makeobj("LazerPlayerA");
-                bulletRR1.transform.position = transform.position + Vector3.right * 0.05f;
-                GameObject bulletRR2 = objectManager.Makeobj("LazerPlayerA");
-                bulletRR2.transform.position = transform.position + Vector3.right * 0.15f;
-
-                GameObject bulletLL1 = objectManager.Makeobj("LazerPlayerA");
-                bulletLL1.transform.position = transform.position + Vector3.left * 0.05f;
-                GameObject bulletLL2 = objectManager.Makeobj("LazerPlayerA");
-                bulletLL2.transform.position = transform.position + Vector3.left * 0.15f;
-
-                Rigidbody2D rigidRR1 = bulletRR1.GetComponent<Rigidbody2D>();
-                Rigidbody2D rigidRR2 = bulletRR2.GetComponent<Rigidbody2D>();
-                Rigidbody2D rigidLL1 = bulletLL1.GetComponent<Rigidbody2D>();
-                Rigidbody2D rigidLL2 = bulletLL2.GetComponent<Rigidbody2D>();
-                
-                rigidRR1.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                rigidRR2.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                rigidLL1.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                rigidLL2.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                
-
+            case 4:
+                ShootRightAdd(0.15f);
+                ShootRightAdd(0.05f);
+                ShootLeftAdd(0.05f);
+                ShootLeftAdd(0.15f);
+                break;
+            case 5:
+                ShootRightAdd(0.2f);
+                ShootRightAdd(0.1f);
+                ShootRightAdd(0);
+                ShootLeftAdd(0.1f);
+                ShootLeftAdd(0.2f);
+                break;
+            case 6:
+                ShootRightAdd(0.25f);
+                ShootRightAdd(0.15f);
+                ShootRightAdd(0.05f);
+                ShootLeftAdd(0.05f);
+                ShootLeftAdd(0.15f);
+                ShootLeftAdd(0.25f);
+                //레벨이 7이되면은 3발로 줄어드는대신 1회관통 가능으로??
                 break;
         }
         curShotDelay = 0;
@@ -277,6 +259,7 @@ public class Player : MonoBehaviour
         {
             life--;
             hpSprite.size -= new Vector2(0.1f, 0f);
+            hpSprite.transform.position += (Vector3.left * 0.035f);
 
             gameManager.CallExplosion(transform.position, "P");
 
@@ -297,6 +280,18 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.tag == "Exp")
         {
             gameManager.xpSlider.value += exp;
+
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.tag == "Exp2")
+        {
+            gameManager.xpSlider.value += exp +0.2f;
+
+            collision.gameObject.SetActive(false);
+        }
+        else if (collision.gameObject.tag == "Exp3")
+        {
+            gameManager.xpSlider.value += exp +0.4f;
 
             collision.gameObject.SetActive(false);
         }
