@@ -151,8 +151,8 @@ MonoBehaviour:
   enemyName: B
   enemyScore: 5000
   speed: 1.5
-  health: 300
-  enemyHealth: 300
+  health: 3000
+  enemyHealth: 3000
   MaxShotDelay: 0
   curShotDelay: 0
   bulletObjA: {fileID: 5247781614472598492, guid: 8ad1a421b7cd3424ca1af5895c3da79a, type: 3}

@@ -170,6 +170,23 @@ public class Player : MonoBehaviour
         rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
 
     }
+    void ShootRightAdd5(float position)
+    {
+        GameObject bullet = objectManager.Makeobj("LazerPlayerB");
+        bullet.transform.position = transform.position + Vector3.right * position;
+
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+    }
+    void ShootLeftAdd5(float position)
+    {
+        GameObject bullet = objectManager.Makeobj("LazerPlayerB");
+        bullet.transform.position = transform.position + Vector3.left * position;
+
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+    }
+    
 
 
     public void Fire()
@@ -216,14 +233,11 @@ public class Player : MonoBehaviour
                 ShootLeftAdd(0.1f);
                 ShootLeftAdd(0.2f);
                 break;
-            case 6:
-                ShootRightAdd(0.25f);
-                ShootRightAdd(0.15f);
-                ShootRightAdd(0.05f);
-                ShootLeftAdd(0.05f);
-                ShootLeftAdd(0.15f);
-                ShootLeftAdd(0.25f);
-                //레벨이 7이되면은 3발로 줄어드는대신 1회관통 가능으로??
+            default:
+                ShootRightAdd5(0.1f);
+                ShootRightAdd5(0);
+                ShootLeftAdd5(0.1f);
+                //레벨이 6이되면은 3발로 줄어드는대신 1회관통 가능
                 break;
         }
         curShotDelay = 0;

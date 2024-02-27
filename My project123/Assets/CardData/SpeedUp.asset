@@ -15,5 +15,5 @@ MonoBehaviour:
   card: 2
   itemName: "\uC774\uB3D9 \uC18D\uB3C4 \uC99D\uAC00"
   description: "\uC774\uB3D9 \uC18D\uB3C4\uAC00 10% \uC99D\uAC00\uD569\uB2C8\uB2E4."
-  skillLevel: 0
+  skillLevel: 1
   cardBackground: {fileID: 0}

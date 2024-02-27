@@ -3050,6 +3050,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e120d14c4718f554c9b77242c2d7315e, type: 2}
   playerLevel: 0
   bigEnemy: 1
+  enemyHealth: 1
   stage: 1
   StageAnim: {fileID: 739751237}
   ClearAnim: {fileID: 1958303596}
@@ -9364,12 +9365,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db82eae46f63ab94f9c17ff601acc441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 555927436}
   enemyBPrefab: {fileID: 6527706966547504505, guid: 63d428293a6a287448c04294733bb036, type: 3}
   enemyLPrefab: {fileID: 5083491766092866835, guid: 55f9ea17f48d57744b37231fb7f78362, type: 3}
   enemyMPrefab: {fileID: 1365915452168314160, guid: 35cf87092d650f145be384056847d782, type: 3}
   enemySPrefab: {fileID: 4677706052436235147, guid: 722e4cc7fa535ff46a9e6523d4e26580, type: 3}
   LazerPlayerAPrefab: {fileID: 4512970372503202007, guid: ed78c01c184ed2f4785d38befcec7f36, type: 3}
-  LazerPlayerS1Prefab: {fileID: 4512970372503202007, guid: c0b91ef11eaa47f449d338e2f821c52a, type: 3}
+  LazerPlayerBPrefab: {fileID: 4512970372503202007, guid: c0b91ef11eaa47f449d338e2f821c52a, type: 3}
   bulletEnemyAPrefab: {fileID: 5247781614472598492, guid: 8ad1a421b7cd3424ca1af5895c3da79a, type: 3}
   bulletEnemyBPrefab: {fileID: 5247781614472598492, guid: 79e53634927ca72438ee317d66515164, type: 3}
   bulletBossAPrefab: {fileID: 5247781614472598492, guid: d2802ef7099037044b9666a3d2e60606, type: 3}

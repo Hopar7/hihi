@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     public float MaxShotDelay;
     public float curShotDelay;
 
-    
     public GameObject bulletObjA;
     public GameObject bulletObjB;
     public GameObject player;
@@ -37,6 +36,7 @@ public class Enemy : MonoBehaviour
 
     void OnEnable()
     {
+        
         switch (enemyName)
         {
             case "B":
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
     {
         if (!gameObject.activeSelf)
             return;
-
+        
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
         rigid.velocity = Vector2.zero;
 
@@ -129,7 +129,7 @@ public class Enemy : MonoBehaviour
             Vector2 dirVec;
 
        
-                dirVec = player.transform.position - transform.position;
+            dirVec = player.transform.position - transform.position;
             
       
             
@@ -205,6 +205,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+       
         if (enemyName == "B")
             return;
 
@@ -235,19 +236,13 @@ public class Enemy : MonoBehaviour
         else if (enemyName == "L")
         {
             GameObject bulletR = objectManager.Makeobj("BulletEnemyB");
-            bulletR.transform.position = transform.position + Vector3.right * 0.3f;
-            GameObject bulletL = objectManager.Makeobj("BulletEnemyB");
-            bulletL.transform.position = transform.position + Vector3.left * 0.3f;
+            bulletR.transform.position = transform.position;
             Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
-            Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
             Vector3 driVecR;
-            Vector3 driVecL;
             
             driVecR = player.transform.position - (transform.position + Vector3.right * 0.3f);
-            driVecL = player.transform.position - (transform.position + Vector3.left * 0.3f);
            
             rigidR.AddForce(driVecR.normalized * 4, ForceMode2D.Impulse);
-            rigidL.AddForce(driVecL.normalized * 4, ForceMode2D.Impulse);
         }
 
         curShotDelay = 0;
@@ -294,8 +289,15 @@ public class Enemy : MonoBehaviour
 
                 Debug.Log("EXP3");
             }
+            else if (enemyName == "B")
+            {
+                GameObject exp = objectManager.Makeobj("Exp3");
+                exp.transform.position = transform.position;
+                exp.transform.position = transform.position +Vector3.right * 0.3f;
+                exp.transform.position = transform.position + Vector3.left * 0.3f;
+                Debug.Log("EXP3,3,3");
+            }
 
-               
 
 
 
@@ -307,7 +309,7 @@ public class Enemy : MonoBehaviour
 
             if(enemyName == "B")
             {
-                gameManager.StageEnd();
+               // gameManager.StageEnd();
                 gameManager.spawnBoss = false;
             }
 
@@ -334,7 +336,8 @@ public class Enemy : MonoBehaviour
         else if(collision.gameObject.tag == "SpecialBullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            OnHit(bullet.dmg);
+            Player playerLogic = player.GetComponent<Player>();
+            OnHit(playerLogic.power);
         }
     }
 }

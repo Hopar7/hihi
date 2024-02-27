@@ -5,8 +5,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int dmg;
+    private int hp;
     public bool isRotate;
 
+     void OnEnable()
+    {
+        hp = 1;    
+    }
     void Update()
     {
         if (isRotate)
@@ -20,6 +25,19 @@ public class Bullet : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+
+        if (gameObject.tag == "SpecialBullet")
+        {
+            if (collision.gameObject.tag == "Enemy")
+            { 
+                hp--;
+                if (hp < 0)
+                {
+                    gameObject.SetActive(false);
+                }
+
+            }
+        }
 
         
     }

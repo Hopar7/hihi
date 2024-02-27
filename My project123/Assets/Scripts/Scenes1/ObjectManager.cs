@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
+
     public GameObject enemyBPrefab;
     public GameObject enemyLPrefab;
     public GameObject enemyMPrefab;
@@ -11,7 +12,7 @@ public class ObjectManager : MonoBehaviour
 
 
     public GameObject LazerPlayerAPrefab;
-    public GameObject LazerPlayerS1Prefab;
+    public GameObject LazerPlayerBPrefab;
 
     public GameObject bulletEnemyAPrefab;
     public GameObject bulletEnemyBPrefab;
@@ -32,7 +33,7 @@ public class ObjectManager : MonoBehaviour
 
 
     GameObject[] LazerPlayerA;
-    GameObject[] LazerPlayerS1;
+    GameObject[] LazerPlayerB;
 
     GameObject[] BulletEnemyA;
     GameObject[] BulletEnemyB;
@@ -54,14 +55,14 @@ public class ObjectManager : MonoBehaviour
         enemyS = new GameObject[20];
 
         LazerPlayerA = new GameObject[300];
-        LazerPlayerS1 = new GameObject[10];
+        LazerPlayerB = new GameObject[300];
 
         BulletEnemyA = new GameObject[100];
         BulletEnemyB = new GameObject[100];
         BulletBossA = new GameObject[50];
         BulletBossB = new GameObject[1000];
 
-        explosion = new GameObject[20];
+        explosion = new GameObject[30];
 
         Exp= new GameObject[100];
         Exp2 = new GameObject[100];
@@ -98,10 +99,10 @@ public class ObjectManager : MonoBehaviour
             LazerPlayerA[i].SetActive(false);
         }
       
-        for (int i = 0; i < LazerPlayerS1.Length; i++)
+        for (int i = 0; i < LazerPlayerB.Length; i++)
         {
-            LazerPlayerS1[i] = Instantiate(LazerPlayerS1Prefab);
-            LazerPlayerS1[i].SetActive(false);
+            LazerPlayerB[i] = Instantiate(LazerPlayerBPrefab);
+            LazerPlayerB[i].SetActive(false);
         }
 
         for (int i = 0; i < BulletEnemyA.Length; i++)
@@ -166,8 +167,8 @@ public class ObjectManager : MonoBehaviour
             case "LazerPlayerA":
                 targerPool = LazerPlayerA;
                 break;
-            case "LazerPlayerS1":
-                targerPool = LazerPlayerS1;
+            case "LazerPlayerB":
+                targerPool = LazerPlayerB;
                 break;
             case "BulletEnemyA":
                 targerPool = BulletEnemyA;
@@ -226,8 +227,8 @@ public class ObjectManager : MonoBehaviour
             case "LazerPlayerA":
                 targerPool = LazerPlayerA;
                 break;
-            case "LazerPlayerS1":
-                targerPool = LazerPlayerS1;
+            case "LazerPlayerB":
+                targerPool = LazerPlayerB;
                 break;
             case "BulletEnemyA":
                 targerPool = BulletEnemyA;

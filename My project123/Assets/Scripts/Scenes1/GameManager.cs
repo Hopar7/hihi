@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public int bigEnemy;
 
 
-
     public int stage;
     public Animator StageAnim;
     public Animator ClearAnim;
@@ -211,21 +210,21 @@ public class GameManager : MonoBehaviour
         if (bigEnemy % 10 == 0)
         {
             sEnemy = "M";
-            
+
         }
         if (bigEnemy % 20 == 0)
         {
             sEnemy = "L";
-            
+
         }
         if (bigEnemy % 30 == 0)
         {
             sEnemy = "B";
-            
+
             spawnBoss = true;
         }
         bigEnemy++;
-
+        
 
         switch (sEnemy)
         {
