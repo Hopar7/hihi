@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public float skilTime;
 
     public SpriteRenderer hpSprite;
+    public SpriteRenderer hpSprite2;
+    public SpriteRenderer hpSprite3;
 
     public bool isTouchTop;
     public bool isTouchBottom;  
@@ -23,7 +25,6 @@ public class Player : MonoBehaviour
     public int shoot;
     public float exp;
 
-    public float maxPower;
     public float maxShotDelay;
     public float curShotDelay;
 
@@ -233,10 +234,19 @@ public class Player : MonoBehaviour
                 ShootLeftAdd(0.1f);
                 ShootLeftAdd(0.2f);
                 break;
+            case 6:
+                ShootRightAdd(0.25f);
+                ShootRightAdd(0.15f);
+                ShootRightAdd(0.05f);
+                ShootLeftAdd(0.05f);
+                ShootLeftAdd(0.15f);
+                ShootLeftAdd(0.25f);
+                break;
             default:
-                ShootRightAdd5(0.1f);
-                ShootRightAdd5(0);
-                ShootLeftAdd5(0.1f);
+                ShootRightAdd5(0.15f);
+                ShootRightAdd5(0.05f);
+                ShootLeftAdd5(0.05f);
+                ShootLeftAdd5(0.15f);
                 //레벨이 6이되면은 3발로 줄어드는대신 1회관통 가능
                 break;
         }

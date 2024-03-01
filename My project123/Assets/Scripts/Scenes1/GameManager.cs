@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public Transform[] spawnPoints;
 
     public float nextSpawnDelay;
+    public float lastSpawnDelay;
+
     public float curSpawnDelay;
     public float spawnUpTime;
 
@@ -103,6 +105,15 @@ public class GameManager : MonoBehaviour
         levelUpUi.SetActive(false);
         Time.timeScale = 1;
     }
+    public void MaxDamageUp()
+    {
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.power=10;
+
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     public void SpeedUp()
     {
         Player playerLogic = player.GetComponent<Player>();
@@ -114,21 +125,52 @@ public class GameManager : MonoBehaviour
     public void HpUp()
     {
         Player playerLogic = player.GetComponent<Player>();
-        playerLogic.life++;
-        
-        playerLogic.hpSprite.size += new Vector2(0.1f, 0f);
-        playerLogic.hpSprite.transform.position += (Vector3.right * 0.035f);
+       
+       
+
+        if (playerLogic.life<10)
+        {
+            playerLogic.life++;
+            playerLogic.hpSprite.size += new Vector2(0.1f, 0f);
+            playerLogic.hpSprite.transform.position += (Vector3.right * 0.035f);
+        }
         levelUpUi.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public void MaxHpUp()
+    {
+        
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.life++;
+        playerLogic.hpSprite.size += new Vector2(0.15f, 0f);
+        playerLogic.hpSprite2.size += new Vector2(0.1f, 0f);
+        playerLogic.hpSprite3.size += new Vector2(0.1f, 0f);
+        playerLogic.hpSprite.transform.position += (Vector3.right * 0.02f);
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+
+
     public void ShootSpeedUp()
     {
         Player playerLogic = player.GetComponent<Player>();
-        playerLogic.maxShotDelay -= 0.08f;
+        playerLogic.maxShotDelay -= 0.05f;
 
         levelUpUi.SetActive(false);
         Time.timeScale = 1;
     }
+    public void MaxShootSpeed()
+    {
+        Player playerLogic = player.GetComponent<Player>();
+        playerLogic.maxShotDelay = 0.1f;
+
+        levelUpUi.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+
     public void AddShoot()
     {
         Player playerLogic = player.GetComponent<Player>();
@@ -197,6 +239,20 @@ public class GameManager : MonoBehaviour
 
     void SpawnEnemy()
     {
+        
+        if (bigEnemy %4 !=0)
+        {
+            
+            nextSpawnDelay = 0.5f;
+
+        }
+        else
+        {
+            nextSpawnDelay = lastSpawnDelay;
+        }
+        
+
+
         if (spawnBoss)
         {
             return;
@@ -217,7 +273,7 @@ public class GameManager : MonoBehaviour
             sEnemy = "L";
 
         }
-        if (bigEnemy % 30 == 0)
+        if (bigEnemy % 150 == 0)
         {
             sEnemy = "B";
 
@@ -245,75 +301,81 @@ public class GameManager : MonoBehaviour
 
 
 
-        List<int> EnemyList = new List<int>();
-        int currentNumber = Random.Range(0, 8);
+       // List<int> EnemyList = new List<int>();
+        int currentNumber = Random.Range(0, 12);
 
-        for (int i = 0; i < 3;)
-        {
-            if (EnemyList.Contains(currentNumber))
-            {
-                currentNumber = Random.Range(0, 8);
-            }
-            else
-            {
-                EnemyList.Add(currentNumber);
-                i++;
-            }
-        }
+        //for (int i = 0; i < 3;)
+        //{
+        //    if (EnemyList.Contains(currentNumber))
+        //    {
+        //        currentNumber = Random.Range(0, 8);
+        //    }
+        //    else
+        //    {
+        //        EnemyList.Add(currentNumber);
+        //        i++;
+        //    }
+        //}
 
-        for (int i = 0; i < 3; i++)
-        {
+        //for (int i = 0; i < 3; i++)
+        //{
 
             if (enemyIndex == 3)
             {
-                enemyPoint = 2;
+                enemyPoint = 3;
             }
             else
             {
-                enemyPoint = EnemyList[i];
+                enemyPoint = currentNumber;
+               // enemyPoint = EnemyList[i];
             }
-        
+            
 
-        GameObject enemy = objectManager.Makeobj(enemyObjs[enemyIndex]);
-        enemy.transform.position = spawnPoints[enemyPoint].position;
+            GameObject enemy = objectManager.Makeobj(enemyObjs[enemyIndex]);
+            enemy.transform.position = spawnPoints[enemyPoint].position;
 
-        Rigidbody2D rigid = enemy.gameObject.GetComponent<Rigidbody2D>();
-        Enemy enemyLogic = enemy.GetComponent<Enemy>();
-        enemyLogic.player = player;
-        enemyLogic.gameManager = this;
-        enemyLogic.objectManager = objectManager;
+            Rigidbody2D rigid = enemy.gameObject.GetComponent<Rigidbody2D>();
+            Enemy enemyLogic = enemy.GetComponent<Enemy>();
+            enemyLogic.player = player;
+            enemyLogic.gameManager = this;
+            enemyLogic.objectManager = objectManager;
 
-        if (enemyPoint == 5 || enemyPoint == 6)
-        {
-            enemy.transform.Rotate(Vector3.back * 90);
-            rigid.velocity = new Vector2(enemyLogic.speed * (-1), -1);
+             if (enemyPoint == 7 || enemyPoint == 8 || enemyPoint ==9)
+             {
+                 enemy.transform.Rotate(Vector3.forward * 90);
+                 rigid.velocity = new Vector2(enemyLogic.speed, -1);
+           
+             }
+             else if (enemyPoint == 10 || enemyPoint == 11 || enemyPoint ==12)
+             {
+                 enemy.transform.Rotate(Vector3.back * 90);
+                 rigid.velocity = new Vector2(enemyLogic.speed * (-1), -1);
         }
-        else if (enemyPoint == 7 || enemyPoint == 8)
-        {
-            enemy.transform.Rotate(Vector3.forward * 90);
-            rigid.velocity = new Vector2(enemyLogic.speed, -1);
-        }
-        else
-        {
-            rigid.velocity = new Vector2(0, enemyLogic.speed * (-1));
-        }
-        if (enemyIndex == 3)
-        {
-            break;
-        }
-    }
+             else
+             {
+                 rigid.velocity = new Vector2(0, enemyLogic.speed * (-1));
+             }
+             if (enemyIndex == 3)
+             {
+                // break;
+             }
+       // }
+
+
+
+
         //시간이 갈수록 딜레이 감소
-        if (spawnUpTime > 15)
+        if (spawnUpTime > 8)
         {
             spawnUpTime = 0;
-            if (nextSpawnDelay > 1)
+            if (lastSpawnDelay > 1)
             {
-                nextSpawnDelay -= 0.04f;
+                lastSpawnDelay -= 0.04f;
             }
-            else
-            {
-                nextSpawnDelay = 1;
-            }
+            //else
+            //{
+            //    nextSpawnDelay = 1;
+            //}
 
         }
 

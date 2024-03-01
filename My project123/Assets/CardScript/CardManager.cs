@@ -17,7 +17,7 @@ public class CardManager : MonoBehaviour
 
     public GameObject[] RedUi;
 
-
+    private int star5card=0;
 
     public Text[] itemName;
     public Text[] itemDescription;
@@ -42,10 +42,19 @@ public class CardManager : MonoBehaviour
 
         List<int> cardIntList = new List<int>();
         int currentNumber = Random.Range(0, card.Length);
-        int j=0;
         for (int i = 0; i < 3;)
         {
-            j++;
+            if(star5card==4)
+            {
+                cardIntList.Add(0);
+                cardIntList.Add(1);
+                cardIntList.Add(2);
+
+
+                break;
+            }
+
+           
             if (cardIntList.Contains(currentNumber))
             {
                 
@@ -64,10 +73,7 @@ public class CardManager : MonoBehaviour
                 i++;
             }
 
-            if(j>50)
-            {
-                break;
-            }
+            
 
         }
         /*
@@ -169,17 +175,17 @@ public class CardManager : MonoBehaviour
         switch (s)
         {
             case "데미지 증가":
-                return "asd";
-            case "최대 체력 증가":
-                return "asd";
+                return "데미지가 10인 최대 데미지가 됩니다.";
+            case "체력 회복":
+                return "최대 체력이 10% 증가합니다. ";
             case "이동 속도 증가":
-                return "asd";
+                return "최대 이동 속도가 됩니다.";
             case "공격 속도 증가":
-                return "asd";
+                return "최대 공격 속도가 됩니다.";
             case "추가 공격":
-                return "발사되는 총알의 수가 3개로 줄어들지만 운석을 한 번 관통합니다.";
+                return "발사되는 총알의 수가 4개로 줄어들지만 운석을 한 번 관통합니다.";
             case "경험치 흭득량 증가":
-                return "asd";
+                return "흠..";
         }
         return "asd";
     }
@@ -194,12 +200,22 @@ public class CardManager : MonoBehaviour
         switch (clickObject.GetComponentInChildren<Text>().text)
         {
             case "데미지 증가":
-                if (card[0].skillLevel < 5)
+                if (card[0].skillLevel < 6)
                 {
+                    if (card[0].skillLevel==5)
+                    {
+                        star5card++;
+                        gameManager.MaxDamageUp();
+                    }
+                    else
+                    {
+                        gameManager.DamageUp();
+
+                    }
                     card[0].skillLevel++;
                     
 
-                    gameManager.DamageUp();
+                   
                 }
                 else
                 {
@@ -209,11 +225,21 @@ public class CardManager : MonoBehaviour
                 }
 
                 break;
-            case "최대 체력 증가":
-                if (card[1].skillLevel < 5)
+            case "체력 회복":
+                if (card[1].skillLevel < 6)
                 {
+                    if (card[1].skillLevel == 5)
+                    {
+                        star5card++;
+                        gameManager.MaxHpUp();
+                        //이런식으로 다 강화됬을때 따로//
+                    }
+                    else
+                    {
+                        gameManager.HpUp();
+                    }
                     card[1].skillLevel++;
-                    gameManager.HpUp();
+                    
                 }
                 else
                 {
@@ -224,8 +250,12 @@ public class CardManager : MonoBehaviour
 
                 break;
             case "이동 속도 증가":
-                if (card[2].skillLevel < 5)
+                if (card[2].skillLevel < 6)
                 {
+                    if (card[2].skillLevel == 5)
+                    {
+                        star5card++;
+                    }
                     card[2].skillLevel++;
                     gameManager.SpeedUp();
                 }
@@ -238,10 +268,20 @@ public class CardManager : MonoBehaviour
 
                 break;
             case "공격 속도 증가":
-                if (card[3].skillLevel < 5)
+                if (card[3].skillLevel < 6)
                 {
+                    if (card[3].skillLevel == 5)
+                    {
+                        star5card++;
+                        gameManager.MaxShootSpeed();
+                    }
+                    else
+                    {
+                        gameManager.ShootSpeedUp();
+                    }
                     card[3].skillLevel++;
-                    gameManager.ShootSpeedUp();
+                    
+                   
                 }
                 else
                 {
@@ -252,8 +292,12 @@ public class CardManager : MonoBehaviour
 
                 break;
             case "추가 공격":
-                if (card[4].skillLevel < 5)
+                if (card[4].skillLevel < 6)
                 {
+                    if (card[4].skillLevel == 5)
+                    {
+                        star5card++;
+                    }
                     card[4].skillLevel++;
                     gameManager.AddShoot();
                 }
@@ -266,8 +310,12 @@ public class CardManager : MonoBehaviour
 
                 break;
             case "경험치 흭득량 증가":
-                if (card[5].skillLevel <5)
+                if (card[5].skillLevel <6)
                 {
+                    if (card[5].skillLevel == 5)
+                    {
+                        star5card++;
+                    }
                     card[5].skillLevel++;
                     gameManager.ExpUp();
                 }
