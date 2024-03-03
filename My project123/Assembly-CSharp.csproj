@@ -61,6 +61,8 @@
     <Compile Include="Assets\Scripts\Scenes2\GameStart.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Enemy.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Player.cs" />
+    <Compile Include="Assets\Scripts\Scenes1\sssssss.cs" />
+    <Compile Include="Assets\Scripts\Scenes1\Banim.cs" />
     <Compile Include="Assets\Scripts\Scenes1\GameManager.cs" />
     <Compile Include="Assets\CardScript\CardManager.cs" />
     <Compile Include="Assets\Sound\SoundScript.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\Scripts\Scenes1\Spawn.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Explosion.cs" />
     <Compile Include="Assets\Scripts\Scenes1\Background.cs" />
+    <Compile Include="Assets\Scripts\Scenes1\JoyDown.cs" />
     <Compile Include="Assets\Vertical 2D Shooting BE4\ReadMe\Scripts\ReadmeBE4.cs" />
   </ItemGroup>
   <ItemGroup>

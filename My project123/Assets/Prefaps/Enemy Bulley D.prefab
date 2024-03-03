@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4340726760344733269}
   - component: {fileID: 4768551994849618232}
   - component: {fileID: 1124221878566896403}
-  - component: {fileID: 3441628272669696415}
+  - component: {fileID: 8560406074442375734}
   m_Layer: 0
   m_Name: Enemy Bulley D
   m_TagString: EnemyBullet
@@ -76,10 +76,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 830317617348258784, guid: 809f2c7f481922241b5001174c25e371, type: 3}
+  m_Sprite: {fileID: 719602981, guid: d0a6776a15bdbe74fbc798dd5d98dce2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 1
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.16666667, y: 0.29166666}
   m_AdaptiveModeThreshold: 0.5
@@ -127,8 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 1
---- !u!61 &3441628272669696415
-BoxCollider2D:
+  isRotate: 0
+--- !u!70 &8560406074442375734
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -159,16 +160,6 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16666667, y: 0.5}
-    newSize: {x: 0.16666667, y: 0.29166666}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.175, y: 0.42}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.000997742, y: 0.00074829906}
+  m_Size: {x: 0.13805005, y: 0.15251704}
+  m_Direction: 0

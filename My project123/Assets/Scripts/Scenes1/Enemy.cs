@@ -235,14 +235,14 @@ public class Enemy : MonoBehaviour
         }
         else if (enemyName == "L")
         {
-            GameObject bulletR = objectManager.Makeobj("BulletEnemyB");
-            bulletR.transform.position = transform.position;
-            Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
-            Vector3 driVecR;
+            //GameObject bulletR = objectManager.Makeobj("BulletEnemyB");
+            //bulletR.transform.position = transform.position;
+            //Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
+            //Vector3 driVecR;
             
-            driVecR = player.transform.position - (transform.position + Vector3.right * 0.3f);
+            //driVecR = player.transform.position - (transform.position + Vector3.right * 0.3f);
            
-            rigidR.AddForce(driVecR.normalized * 4, ForceMode2D.Impulse);
+            //rigidR.AddForce(driVecR.normalized * 4, ForceMode2D.Impulse);
         }
 
         curShotDelay = 0;

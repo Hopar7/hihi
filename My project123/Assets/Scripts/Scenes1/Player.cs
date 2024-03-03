@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
     public float skilTime;
+
 
     public SpriteRenderer hpSprite;
     public SpriteRenderer hpSprite2;
@@ -42,10 +42,12 @@ public class Player : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Animator anim;
+    Animator anim2;
 
     void Awake()
     {
         anim = GetComponent<Animator>();
+        
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void OnEnable()
@@ -148,7 +150,7 @@ public class Player : MonoBehaviour
     public void ButtonADown()
     {
         isButtonA = true;
-
+         
 
     }
    
